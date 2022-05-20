@@ -1,0 +1,34 @@
+{
+  "properties" : {
+    "id": {
+      "type": "text"
+    },
+    "name": {
+      "type": "keyword"
+    },
+    "tags": {
+      "type": "text"
+    },
+    "createdBy": {
+      "type": "keyword"
+    },
+    "parentId": {
+      "type": "keyword"
+    },
+    "path": {
+      "type": "text"
+    },
+    "deleted": {
+      "type": "boolean"
+    },
+    "sharedWith": {
+      "type": "keyword"
+    },
+    "folder": {
+      "type": "boolean"
+    },
+    "createdOn": {
+      "type": "date"
+    }
+  }
+}
