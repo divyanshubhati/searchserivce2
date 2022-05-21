@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/file")
+@RequestMapping("/api/internal/file")
 public class FileController {
 
     private final FileService service;
@@ -66,11 +66,7 @@ public class FileController {
 //        return service.searchCreatedSince(dto, date);
 //    }
 
-    @PostMapping("/search")
-    public List<FileObject> search(
-            @RequestBody final SearchRequestDTO dto) {
-        return service.searchUsingDTO(dto);
-    }
+
 
     @PutMapping("/update")
     public ResponseEntity<String> update(@RequestBody final FileObject updatedFileObject){
