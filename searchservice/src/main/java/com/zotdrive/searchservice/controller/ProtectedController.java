@@ -4,11 +4,13 @@ import com.zotdrive.searchservice.document.FileObject;
 import com.zotdrive.searchservice.search.SearchRequestDTO;
 import com.zotdrive.searchservice.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -24,7 +26,8 @@ public class ProtectedController {
 
     @PostMapping("/search")
     public List<FileObject> search(
-            @RequestBody final SearchRequestDTO dto) {
+            @RequestBody final SearchRequestDTO dto, Authentication authentication, Principal principal) {
+        dto.setUserId(authentication.getName());
         return service.searchUsingDTO(dto);
     }
 }
