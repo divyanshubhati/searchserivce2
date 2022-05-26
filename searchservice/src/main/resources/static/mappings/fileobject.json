@@ -29,6 +29,12 @@
     },
     "createdOn": {
       "type": "date"
+    },
+    "type": {
+      "type": "keyword"
+    },
+    "size": {
+      "type": "long"
     }
   }
 }

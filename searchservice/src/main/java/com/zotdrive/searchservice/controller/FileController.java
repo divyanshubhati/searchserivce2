@@ -73,30 +73,38 @@ public class FileController {
         if(updatedFileObject.getId() == null){
             return new ResponseEntity<>("FileId missing", HttpStatus.PRECONDITION_FAILED);
         }
-        if(service.update(updatedFileObject)){
-            return new ResponseEntity<>("Filed updated successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Issue updating file", HttpStatus.PRECONDITION_FAILED);
-        }
+//        if(service.update(updatedFileObject)){
+//            return new ResponseEntity<>("Filed updated successfully", HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Issue updating file", HttpStatus.PRECONDITION_FAILED);
+//        }
+
+        service.update(updatedFileObject);
+        return new ResponseEntity<>("Filed updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/{fileId}")
     public ResponseEntity<String> delete(@PathVariable final String fileId ){
 
-        if(service.updateFileStatus(fileId, true)) {
-            return new ResponseEntity<>("Filed deleted successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Issue deleting file", HttpStatus.PRECONDITION_FAILED);
-        }
+//        if(service.updateFileStatus(fileId, true)) {
+//            return new ResponseEntity<>("Filed deleted successfully", HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Issue deleting file", HttpStatus.PRECONDITION_FAILED);
+//        }
+
+        service.updateFileStatus(fileId, true);
+        return new ResponseEntity<>("Filed deleted successfully", HttpStatus.OK);
     }
 
     @PutMapping("/recover/{fileId}")
     public ResponseEntity<String> recover(@PathVariable final String fileId){
-        if(service.updateFileStatus(fileId, false)){
-            return new ResponseEntity<>("Filed recovered successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Issue recovering file", HttpStatus.PRECONDITION_FAILED);
-        }
+//        if(service.updateFileStatus(fileId, false)){
+//            return new ResponseEntity<>("Filed recovered successfully", HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Issue recovering file", HttpStatus.PRECONDITION_FAILED);
+//        }
+        service.updateFileStatus(fileId, false);
+        return new ResponseEntity<>("Filed recovered successfully", HttpStatus.OK);
     }
 
     @PutMapping("/share")
@@ -117,12 +125,14 @@ public class FileController {
             return new ResponseEntity<>("File cannot be shared with user", HttpStatus.PRECONDITION_FAILED);
         }
 
-        if(service.shareFile(file)){
-            return new ResponseEntity<>("Filed shared successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Issue sharing file", HttpStatus.PRECONDITION_FAILED);
-        }
+//        if(service.shareFile(file)){
+//            return new ResponseEntity<>("Filed shared successfully", HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Issue sharing file", HttpStatus.PRECONDITION_FAILED);
+//        }
 
+        service.shareFile(file);
+        return new ResponseEntity<>("Filed shared successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/share")
@@ -142,12 +152,14 @@ public class FileController {
         if(file.getSharedWith().contains(file.getCreatedBy())){
             return new ResponseEntity<>("File cannot be shared with user", HttpStatus.PRECONDITION_FAILED);
         }
-        if(service.removeFileShare(file)){
-            return new ResponseEntity<>("Filed permission successfully", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Issue updating file permission", HttpStatus.PRECONDITION_FAILED);
-        }
+//        if(service.removeFileShare(file)){
+//            return new ResponseEntity<>("Filed permission successfully", HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Issue updating file permission", HttpStatus.PRECONDITION_FAILED);
+//        }
 
+        service.removeFileShare(file);
+        return new ResponseEntity<>("Filed permission successfully", HttpStatus.OK);
     }
 
 

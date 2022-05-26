@@ -26,6 +26,10 @@ public class FileObject {
 
     private boolean folder;
 
+    private String type;
+
+    private long size;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdOn;
 
@@ -107,5 +111,33 @@ public class FileObject {
 
     public void setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public boolean isFolder() {
+        return folder;
+    }
+
+    public void setFolder(boolean folder) {
+        this.folder = folder;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
     }
 }

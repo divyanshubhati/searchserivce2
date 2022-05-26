@@ -50,7 +50,7 @@ public class FileService {
             request.source(fileAsString, XContentType.JSON);
             final IndexResponse response = client.index(request, RequestOptions.DEFAULT);
 
-            return response != null && response.status().equals(RestStatus.OK);
+            return response != null && response.status().getStatus() == 201;
 
         } catch (final Exception e) {
             LOG.error(e.getMessage(), e);
