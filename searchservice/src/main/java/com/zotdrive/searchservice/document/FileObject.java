@@ -2,12 +2,16 @@ package com.zotdrive.searchservice.document;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
-
+@JsonIgnoreProperties
 public class FileObject {
 
+    @JsonProperty("objectid")
     private String id;
 
     private String name;
