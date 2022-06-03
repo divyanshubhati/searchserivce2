@@ -87,7 +87,7 @@ public class FileService {
     public boolean shareFile(final FileObject inputFile){
         FileObject originalFileObject = getFileById(inputFile.getId());
 
-        if(originalFileObject.getCreatedBy() != inputFile.getCreatedBy()) return false;
+        if(!originalFileObject.getCreatedBy().equals(inputFile.getCreatedBy())) return false;
 
         if(originalFileObject.getSharedWith() == null){
             originalFileObject.setSharedWith(new ArrayList<String>());
