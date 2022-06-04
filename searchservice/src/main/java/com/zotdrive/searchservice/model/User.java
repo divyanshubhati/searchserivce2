@@ -5,21 +5,13 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.GenericGenerator;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 @Data
 @Entity
 @Table(	name = "users",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
 @JsonIgnoreProperties("password")
@@ -28,30 +20,32 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long user_id;
-    @NotBlank
-    @Size(max = 20)
-    private String username;
+
+    @Column(name = "first_name")
+    @Size(max =255)
+    private String firstName;
+
+    @Column(name = "last_name")
+    @Size(max =255)
+    private String lastName;
+
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
 
-    private String firstName;
-
-    private String lastName;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @JsonIgnore
     @NotBlank
     @Size(max = 120)
     private String password;
 
-    //    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "role_id")
 //    private Role role;
-    @OneToMany(mappedBy = "user")
-    Set<Access> access;
 
 }
